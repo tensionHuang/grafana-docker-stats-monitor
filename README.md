@@ -1,6 +1,8 @@
 ## Goal
 * monitor local docker containers stats by a nice GUI
 
+![pic 1](./imgs/grafana-ui.png)
+
 ## Components
 1. docker container: the monitor target
 2. stats exporter: [DockerStatsExporter](https://github.com/wywywywy/docker_stats_exporter)
@@ -11,6 +13,8 @@
 * Install the monitor with one simple command
     * `docker-compose up -d`
 
+![pic 2](./imgs/grafana-docker-compose-ps.png)
+
 * Now you can access these servers
     * Get in Grafana: http://localhost:3000
     * Get in Prometheus: http://localhost:9090
@@ -18,7 +22,11 @@
 
 ## Setup Grafana dashboard to monitor the containers
 * select data soure - prometheus
-    * "Add Data Source" -> select "Prometheus" 
+    * "Add Data Source" -> select "Prometheus" -> setup prometheus `http://prometheus:9090`
+
+![pic 3](./imgs/grafana-data-src-prometheus.png)
+
+
 * Import docker stats dashboard template
     * Click "Import" and upload the following JSON file 
         * docker-container-stats-dashboard.json 
