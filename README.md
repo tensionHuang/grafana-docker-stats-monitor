@@ -18,8 +18,11 @@
 
 ## Setup Grafana dashboard to monitor the containers
 * select data soure - prometheus
+    * "Add Data Source" -> select "Prometheus" 
 * Import docker stats dashboard template
-    * docker-container-stats-dashboard.json 
+    * Click "Import" and upload the following JSON file 
+        * docker-container-stats-dashboard.json 
+
 
 ### How it works
 * All secrects is in `prometheus.yml` and `docker-compose.yml`
