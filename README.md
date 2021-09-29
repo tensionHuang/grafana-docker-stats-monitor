@@ -26,8 +26,8 @@
   
 ### How does the exporter get the docker stats from docker?
 - get specific container's stats once
-```
-curl --unix-socket /var/run/docker.sock http://localhost/containers/timescaledb/stats\?stream\=false | jq
+```bash
+$curl --unix-socket /var/run/docker.sock http://localhost/containers/<container-name>/stats\?stream\=false | jq
 ```
 
 ## References
