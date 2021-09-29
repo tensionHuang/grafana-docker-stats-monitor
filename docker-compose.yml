@@ -1,0 +1,39 @@
+version: '3.2'
+services:
+  grafana:
+    image: grafana/grafana:6.5.0
+    container_name: grafana
+    ports:
+    - 3000:3000
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+    - 9090:9090
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+    - docker_stats_exporter
+    # Uncomment it if you want to enable cAdvisor
+    # - cadvisor
+  docker_stats_exporter:
+    image: wywywywy/docker_stats_exporter:latest
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:rw
+    environment: 
+    - DOCKERSTATS_INTERVAL=5
+    ports: 
+    - 9487:9487
+  # Uncomment it if you want to enable cAdvisor
+  # cadvisor:
+  #   image: gcr.io/cadvisor/cadvisor:latest
+  #   container_name: cadvisor
+  #   ports:
+  #   - 8080:8080
+  #   volumes:
+  #   - /:/rootfs:ro
+  #   - /var/run:/var/run:rw
+  #   - /sys:/sys:ro
+  #   - /var/lib/docker/:/var/lib/docker:ro
